@@ -1,0 +1,32 @@
+version: 2
+
+seeds:
+  - name: business_units
+    description: "Business units of RDDP company"
+    columns:
+      - name: bu_id
+        tests: [unique, not_null]
+      - name: bu_name
+        tests: [unique, not_null]
+
+  - name: item_category
+    description: "Categories under each business unit"
+    columns:
+      - name: category_id
+        tests: [unique, not_null]
+      - name: bu_id
+        tests:
+          - relationships:
+              to: ref('business_units')
+              field: bu_id
+
+  - name: item_master
+    description: "Products sold by RDDP mapped to categories"
+    columns:
+      - name: item_id
+        tests: [unique, not_null]
+      - name: category_id
+        tests:
+          - relationships:
+              to: ref('item_category')
+              field: category_id
