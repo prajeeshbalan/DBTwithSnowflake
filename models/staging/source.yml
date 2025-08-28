@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: rddp_raw
+    database: db060725
+    schema: sch060725
+    tables:
+      - name: customers
+      - name: suppliers
+      - name: orders
+      - name: sales
