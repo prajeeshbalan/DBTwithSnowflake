@@ -1,25 +1,40 @@
-{{ config(materialized='table') }}
-
-
 with source as (
 
-    select * from {{ source('rddp_raw', 'suppliers') }}
+    select * 
+    from {{ source('rddp_raw', 'suppliers') }}
 
 ),
 
-renamed as (
+deduplicated as (
+
+    select 
+        supplier_id,
+        trim(initcap(supplier_name)) as supplier_name,   -- clean names
+        initcap(supplier_type) as supplier_type,         -- normalize type
+        upper(country) as country,                       -- standardize country
+        coalesce(rating, 0.0) as rating,                 -- handle null ratings
+        onboard_date,
+        is_preferred,
+        row_number() over (
+            partition by supplier_id 
+            order by onboard_date desc
+        ) as row_num
+    from source
+
+),
+
+final as (
 
     select
         supplier_id,
-        trim(initcap(supplier_name)) as supplier_name,   -- fix spacing + casing
-        upper(product_category) as product_category,      -- normalize categories
-        trim(initcap(city)) as city,                      -- clean city names
-        upper(country) as country,                        -- standardize country
-        lower(trim(email)) as email,                      -- normalize email
-        regexp_replace(phone, '[^0-9]', '') as phone,     -- keep only digits
-        is_active
-    from source
-    where is_active = true   -- filter active suppliers only
+        supplier_name,
+        supplier_type,
+        country,
+        rating,
+        onboard_date,
+        is_preferred
+    from deduplicated
+    where row_num = 1
 )
 
-select * from renamed
+select * from final
