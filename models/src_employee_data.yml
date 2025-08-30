@@ -1,6 +1,0 @@
-version: 2
-
-sources:
-  - name: sch060725      # schema name
-    tables:
-      - name: employee_data   # table name in that schema
