@@ -14,6 +14,7 @@ deduplicated as (
         upper(country) as country,                       -- standardize country
         coalesce(rating, 0.0) as rating,                 -- handle null ratings
         onboard_date,
+        {{ date_trunc_month('onboard_date') }} onboard_month,
         is_preferred,
         row_number() over (
             partition by supplier_id 
@@ -32,6 +33,7 @@ final as (
         country,
         rating,
         onboard_date,
+        onboard_month,
         is_preferred
     from deduplicated
     where row_num = 1
