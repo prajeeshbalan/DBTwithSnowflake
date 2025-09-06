@@ -28,4 +28,3 @@ models:
       +materialized: view # staging models as views
     marts:                # maps to models/marts
       +materialized: table # marts as tables
-
