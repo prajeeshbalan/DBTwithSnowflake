@@ -26,4 +26,8 @@ models:
   staging:              # maps to models/staging
     +materialized: view # staging models as views
   marts:                # maps to models/marts
+<<<<<<< HEAD
     +materialized: table # marts as tables
+=======
+    +materialized: table # marts as tables
+>>>>>>> 324d3eb57f9e909387785769693d4623b26e071b
