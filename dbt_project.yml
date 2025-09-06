@@ -22,9 +22,17 @@ clean-targets:
   - "dbt_packages"
 
 # Model configurations
+#models:
+#  dbtwithsnowflake:
+#    staging:              # maps to models/staging
+#      +materialized: view # staging models as views
+#    marts:                # maps to models/marts
+#      +materialized: table # marts as tables
+
 models:
   dbtwithsnowflake:
-    staging:              # maps to models/staging
-      +materialized: view # staging models as views
-    marts:                # maps to models/marts
-      +materialized: table # marts as tables
+    dbtwithsnowflake:
+      staging:
+        +materialized: view
+      marts:
+        +materialized: table
