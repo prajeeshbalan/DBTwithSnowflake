@@ -22,7 +22,6 @@ clean-targets:         # directories to be removed  by `dbt clean`
 
 
 models:
-  DBTwithSnowflake:           # project name
     staging:                  # maps to models/staging
       +materialized: views    # staging models as views
     marts:                    # maps to models/marts
