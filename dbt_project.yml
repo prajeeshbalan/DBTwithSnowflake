@@ -1,6 +1,6 @@
 # dbt_project.yml
 # Project names should contain only lowercase characters and underscores
-name: 'DBTwithSnowflake'
+name: 'dbtwithsnowflake'
 version: '1.0.0'
 config-version: 2
 
@@ -23,7 +23,7 @@ clean-targets:
 
 # Model configurations
 models:
-  DBTwithSnowflake:
+  dbtwithsnowflake:
     staging:              # maps to models/staging
       +materialized: view # staging models as views
     marts:                # maps to models/marts
