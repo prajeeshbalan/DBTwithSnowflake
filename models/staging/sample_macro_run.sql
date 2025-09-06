@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 select
     {{ date_trunc_month('updated_timestamp') }} as month_start,
     count(*) as order_count
