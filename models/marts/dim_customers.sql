@@ -31,4 +31,4 @@ transformed as (
     from base
 )
 
-select customer_id,customer_name from transformed
+select customer_id, customer_name from transformed
