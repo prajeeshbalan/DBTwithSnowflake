@@ -23,8 +23,9 @@ clean-targets:
 
 # Model configurations
 models:
-  staging:              # maps to models/staging
-    +materialized: view # staging models as views
-  marts:                # maps to models/marts
-    +materialized: table # marts as tables
+  DBTwithSnowflake:
+    staging:              # maps to models/staging
+      +materialized: view # staging models as views
+    marts:                # maps to models/marts
+      +materialized: table # marts as tables
 
