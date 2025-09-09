@@ -1,5 +1,5 @@
 # dbt_project.yml
-# Project names should contain only lowercase characters and underscores
+# Project names should contain only lowercase characters and  underscores
 name: 'dbtwithsnowflake'
 version: '1.0.0'
 config-version: 2
